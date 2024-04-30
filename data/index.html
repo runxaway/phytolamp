@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Фитолампа "ЛЭТИ"</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="Header">
+        <img
+            class="Logo"
+            src="ETUlogo.png"
+        >
+        <div class="HeaderText">Панель управления фитолампой</div>
+    </div>
+    <div class="BodyContent">
+        <div class="TopWrapper">
+            <div class="ToggleCard">
+                <div class="ToggleText" id="toggle">Лампа выключена</div>
+                <span class="Toggle">
+                    <input id="Toggle-rounded" type="checkbox" onclick="toggle()"/>
+                    <label for="Toggle-rounded"></label>
+                </span>
+            </div>
+            <div class="StatCard">
+                <p class="Stat">
+                    Температура: <span id="temperature">--.--</span> &deg;C
+                </p>
+                <p class="Stat" style="margin-left: 20px;">
+                    Влажность: <span id="humidity">--.--</span> %
+                </p>
+            </div>
+        </div>
+        <div class="CardGrid">
+            <div class="Card">
+                <p class="CardTitle">Яркость красных светдиодов</p>
+                <p class="switch">
+                    <input type="range" oninput="updateSliderPWM(this)" id="slider1" min="0" max="100" step="1" value ="0" class="slider">
+                </p>
+                <p class="state"><span id="sliderValue1"></span> %</p>
+            </div>
+            <div class="Card">
+                <p class="CardTitle">Яркость ультрафиолетовых светдиодов</p>
+                <p class="switch">
+                    <input type="range" oninput="updateSliderPWM(this)" id="slider2" min="0" max="100" step="1" value ="0" class="slider">
+                </p>
+                <p class="state"><span id="sliderValue2"></span> %</p>
+            </div>
+            <div class="Card">
+                <p class="CardTitle">Яркость зеленых светдиодов</p>
+                <p class="switch">
+                    <input type="range" oninput="updateSliderPWM(this)" id="slider3" min="0" max="100" step="1" value ="0" class="slider">
+                </p>
+                <p class="state"><span id="sliderValue3"></span> %</p>
+            </div>
+            <div class="Card">
+                <p class="CardTitle">Яркость дальне-красных светдиодов</p>
+                <p class="switch">
+                    <input type="range" oninput="updateSliderPWM(this)" id="slider4" min="0" max="100" step="1" value ="0" class="slider">
+                </p>
+                <p class="state"><span id="sliderValue4"></span> %</p>
+            </div>
+            <div class="Card">
+                <p class="CardTitle">Яркость синих светдиодов</p>
+                <p class="switch">
+                    <input type="range" oninput="updateSliderPWM(this)" id="slider5" min="0" max="100" step="1" value ="0" class="slider">
+                </p>
+                <p class="state"><span id="sliderValue5"></span> %</p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

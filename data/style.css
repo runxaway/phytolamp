@@ -1,0 +1,210 @@
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    display: inline-block;
+    text-align: center;
+    background-color: #eeeeee;
+}
+
+body {
+    margin: 0;
+}
+
+/* h1 {
+    font-size: 1.8rem;
+    color: white;
+}
+
+p {
+    font-size: 1.4rem;
+} */
+
+.Header {
+    display:inherit;
+    background-color: #04336e;
+    /* padding: 0px 90px; */
+    align-items: center;
+    /* height: 100px; */
+}
+
+.Logo {
+    width: 230px;
+}
+
+.HeaderText {
+    font-size: 20px;
+    color: #ffffff;
+    /* width: 68%; */
+    padding-bottom: 5px;
+}
+
+.BodyContent {
+    padding-top: 30px;
+
+}
+
+.TopWrapper {
+    display: flex;
+    padding: 0 40px 20px 40px;
+}
+
+@media (max-width: 590px) {
+    .TopWrapper {
+        display: block;
+    }
+}
+    
+.ToggleCard {
+    min-width: 30%;
+    height: 120px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 2px 2px 12px 1px rgba(140,140,140,.5);
+    align-items: center;
+}
+
+.ToggleText {
+    /* margin-top: 10px; */
+    padding-top: 18px;
+    margin-bottom: 5px;
+    font-size: 19px;
+    color: #04336e;
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+
+.Toggle {
+    display: inline-block;
+    background-color: rgb(4 51 110 / 20%);
+    border-radius: 30px;
+}
+
+.Toggle input {
+    display: none;
+}
+
+.Toggle input:checked ~ label {
+    border-color: #04336e;
+    background-color: rgb(4 51 110 / 60%);
+}
+
+.Toggle input:checked ~ label::after {
+    translate: 50px 0;
+    background: #04336e;
+}
+
+.Toggle label {
+    display: block;
+    width: 80px;
+    height: 30px;
+    padding: 3px;
+    border-radius: 30px;
+    border: 2px solid #04336e;
+    cursor: pointer;
+    transition: 0.3s;
+}
+  
+.Toggle label::after {
+    content: "";
+    display: inherit;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background: #04336e;
+    transition: 0.3s;
+}
+  
+/* .Toggle input:disabled ~ label {
+    opacity: 0.5;
+    cursor: not-allowed;
+} */
+
+.StatCard {
+    display: flex;
+    min-width: 20%;
+    margin-left: 40px;
+    height: 120px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 2px 2px 12px 1px rgba(140,140,140,.5);
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+}
+
+@media (max-width: 590px) {
+    .StatCard {
+        min-width: 25%;
+        height: 120px;
+        margin-left: 0px;
+        margin-top: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 2px 2px 12px 1px rgba(140,140,140,.5);
+        align-items: center;
+    }
+}
+
+.Stat {
+    font-size: 20px;
+    font-weight: bold;
+    color: #034078;
+}
+
+.CardGrid {
+    max-width: 100%;
+    margin: 0 40px;
+    display: grid;
+    grid-gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.Card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 2px 2px 12px 1px rgba(140,140,140,.5);
+}
+
+.CardTitle {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #034078
+}
+
+.state {
+    font-size: 1.2rem;
+    color:rgb(4 51 110 / 80%);
+}
+  .slider {
+    appearance: none;
+    -webkit-appearance: none;
+    margin: 0 auto;
+    width: 100%;
+    height: 15px;
+    border-radius: 10px;
+    background: rgb(4 51 110 / 40%);
+    outline: none;
+  }
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #034078;
+    cursor: pointer;
+  }
+  .slider::-moz-range-thumb {
+    width: 30px;
+    height: 30px;
+    border-radius: 50% ;
+    background: #034078;
+    cursor: pointer;
+  }
+  .switch {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .switch input:disabled {
+    opacity: 0.5;
+  }
