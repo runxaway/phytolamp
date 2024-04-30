@@ -9,7 +9,9 @@
 
 #define DHTPIN 23 //here we use pin IO14 of ESP32 to read data
 #define DHTTYPE DHT11 //our sensor is DHT22 type
+#define SENSOR_PIN 22
 
+bool movement_detected = false;
 
 // Replace with your network credentials
 const char* ssid = "TP-Link_B763";
@@ -43,7 +45,7 @@ String sliderValue3 = "0";
 String sliderValue4 = "0";
 String sliderValue5 = "0";
 String toggle = "Лампа выключена";
-String move = "Адаптация излучения выключена";
+String move = "Адаптация излучения OFF";
 
 int dutyCycle1;
 int dutyCycle2;
@@ -78,6 +80,13 @@ JSONVar sliderValues;
 String getSliderValues(String m) {
   sliderValues["sliderValue1"] = String(sliderValue1);
   sliderValues["sliderValue2"] = String(sliderValue2);
+  if (move == "Адаптация излучения ON") {
+    if (movement_detected == true) {
+      sliderValue3 = ((sliderValue1.toInt() + sliderValue5.toInt())/2);
+    } else {
+      sliderValue3 = "0";
+    }
+  }
   sliderValues["sliderValue3"] = String(sliderValue3);
   sliderValues["sliderValue4"] = String(sliderValue4);
   sliderValues["sliderValue5"] = String(sliderValue5);
@@ -90,6 +99,15 @@ String getSliderValues(String m) {
     toggle = String("Лампа выключена");
   }
   sliderValues["toggle"] = String(toggle);
+
+  if (m == "Адаптация излучения ON") {
+    move = String("Адаптация излучения ON");
+  }
+  if (m == "Адаптация излучения OFF") {
+    move = String("Адаптация излучения OFF");
+  }
+
+  sliderValues["move"] = String(move);
 
   String jsonString = JSON.stringify(sliderValues);
   return jsonString;
@@ -141,6 +159,12 @@ void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
       dutyCycle3 = 0;
       dutyCycle4 = 0;
       dutyCycle5 = 0;
+      notifyClients(getSliderValues(message));
+    }
+    if (message == "Адаптация излучения ON") {
+      notifyClients(getSliderValues(message));
+    }
+    if (message == "Адаптация излучения OFF") {
       notifyClients(getSliderValues(message));
     }
     // Serial.print(message.indexOf("1s"));
@@ -221,6 +245,8 @@ void setup() {
   pinMode(ledPin4, OUTPUT);
   pinMode(ledPin5, OUTPUT);
 
+  pinMode(SENSOR_PIN, INPUT);
+
   // configure LED PWM functionalitites
   ledcSetup(ledChannel1, freq, resolution);
   ledcSetup(ledChannel2, freq, resolution);
@@ -256,11 +282,31 @@ void setup() {
 }
 
 void loop() {
+  if (move == "Адаптация излучения ON") {
+    if (movement_detected == true) {
+      dutyCycle3 = (dutyCycle1 + dutyCycle5)/2;
+    } else {
+      dutyCycle3 = 0;
+    }
+  }
   ledcWrite(ledChannel1, dutyCycle1);
   ledcWrite(ledChannel2, dutyCycle2);
   ledcWrite(ledChannel3, dutyCycle3);
   ledcWrite(ledChannel4, dutyCycle4);
   ledcWrite(ledChannel5, dutyCycle5);
+
+  int sensor_reading = digitalRead(SENSOR_PIN);
+  if (sensor_reading == HIGH) {
+    // Движение обнаружено
+    if (!movement_detected) {
+      movement_detected = true;
+      Serial.print("move");
+    }
+  } else {
+    if (movement_detected) {
+      movement_detected = false;
+    }
+  }
 
   ws.cleanupClients();
 }

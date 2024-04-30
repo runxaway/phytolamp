@@ -23,12 +23,12 @@ function toggle() {
 }
 
 function move() {
-    var mov = document.getElementById("move").value;
+    var mov = document.getElementById("move").innerHTML;
     console.log(mov);
-    if (mov == "off") {
-        websocket.send("MoveON")
-    } else if (mov == "on") {
-        websocket.send("MoveOff")
+    if (mov == "Адаптация излучения OFF") {
+        websocket.send("Адаптация излучения ON")
+    } else if (mov == "Адаптация излучения ON") {
+        websocket.send("Адаптация излучения OFF")
     }
 }
 
@@ -98,7 +98,13 @@ function onMessage(event) {
             document.getElementById("slider5").removeAttribute("disabled");
             document.getElementById("Toggle-move").removeAttribute("disabled");
             // document.getElementById("temperature").value = myObj[key];
-         } else {
+        } else if (myObj[key] == "Адаптация излучения OFF" && document.getElementById("Toggle-rounded").checked == true) {
+            document.getElementById(key).innerHTML = myObj[key];
+            document.getElementById("slider3").removeAttribute("disabled");
+        } else if (myObj[key] == "Адаптация излучения ON") {
+            document.getElementById(key).innerHTML = myObj[key];
+            document.getElementById("slider3").setAttribute("disabled", "");
+        } else {
             document.getElementById(key).innerHTML = myObj[key];
             document.getElementById("slider"+ (i+1).toString()).value = myObj[key];
         }
