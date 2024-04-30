@@ -22,6 +22,16 @@ function toggle() {
     }
 }
 
+function move() {
+    var mov = document.getElementById("move").value;
+    console.log(mov);
+    if (mov == "off") {
+        websocket.send("MoveON")
+    } else if (mov == "on") {
+        websocket.send("MoveOff")
+    }
+}
+
 setInterval(function updateSensorsData(){
     websocket.send("getReadings");
 }, 15000);
@@ -76,6 +86,7 @@ function onMessage(event) {
             document.getElementById("slider3").setAttribute("disabled", "");
             document.getElementById("slider4").setAttribute("disabled", "");
             document.getElementById("slider5").setAttribute("disabled", "");
+            document.getElementById("Toggle-move").setAttribute("disabled", "");
             // document.getElementById("temperature").value = myObj[key];
         } else if (myObj[key] == "Лампа включена") {
             document.getElementById(key).innerHTML = myObj[key];
@@ -85,6 +96,7 @@ function onMessage(event) {
             document.getElementById("slider3").removeAttribute("disabled");
             document.getElementById("slider4").removeAttribute("disabled");
             document.getElementById("slider5").removeAttribute("disabled");
+            document.getElementById("Toggle-move").removeAttribute("disabled");
             // document.getElementById("temperature").value = myObj[key];
          } else {
             document.getElementById(key).innerHTML = myObj[key];

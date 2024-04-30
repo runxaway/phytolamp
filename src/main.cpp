@@ -42,9 +42,8 @@ String sliderValue2 = "0";
 String sliderValue3 = "0";
 String sliderValue4 = "0";
 String sliderValue5 = "0";
-String toggleoff = "Лампа выключена";
-String toggleon = "Лампа включена";
 String toggle = "Лампа выключена";
+String move = "Адаптация излучения выключена";
 
 int dutyCycle1;
 int dutyCycle2;
@@ -85,11 +84,9 @@ String getSliderValues(String m) {
   sliderValues["temperature"] = String(dht.readTemperature());
   sliderValues["humidity"] =  String(dht.readHumidity());
   if (m == "Лампа включена") {
-    // sliderValues["toggle"] = String(toggleon);
     toggle = String("Лампа включена");
   }
   if (m == "Лампа выключена") {
-    // sliderValues["toggle"] = String(toggleoff);
     toggle = String("Лампа выключена");
   }
   sliderValues["toggle"] = String(toggle);

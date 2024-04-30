@@ -47,15 +47,25 @@ p {
     padding: 0 40px 20px 40px;
 }
 
-@media (max-width: 590px) {
+@media (max-width: 890px) {
     .TopWrapper {
         display: block;
     }
 }
     
 .ToggleCard {
-    min-width: 30%;
+    min-width: 25%;
     height: 120px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 2px 2px 12px 1px rgba(140,140,140,.5);
+    align-items: center;
+}
+
+.ToggleMoveCard {
+    min-width: 25%;
+    height: 120px;
+    margin-left: 40px;
     background-color: white;
     border-radius: 10px;
     box-shadow: 2px 2px 12px 1px rgba(140,140,140,.5);
@@ -120,7 +130,7 @@ p {
 
 .StatCard {
     display: flex;
-    min-width: 20%;
+    width: 50%;
     margin-left: 40px;
     height: 120px;
     background-color: white;
@@ -128,12 +138,24 @@ p {
     box-shadow: 2px 2px 12px 1px rgba(140,140,140,.5);
     justify-content: center;
     align-items: center;
-    padding: 0 20px;
+    padding: 0 22px;
 }
 
-@media (max-width: 590px) {
+@media (max-width: 890px) {
     .StatCard {
+        width: inherit;
         min-width: 25%;
+        height: 120px;
+        margin-left: 0px;
+        margin-top: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 2px 2px 12px 1px rgba(140,140,140,.5);
+        align-items: center;
+    }
+
+    .ToggleMoveCard {
+        min-width: 30%;
         height: 120px;
         margin-left: 0px;
         margin-top: 20px;
@@ -174,7 +196,8 @@ p {
     font-size: 1.2rem;
     color:rgb(4 51 110 / 80%);
 }
-  .slider {
+
+.slider {
     appearance: none;
     -webkit-appearance: none;
     margin: 0 auto;
@@ -183,8 +206,9 @@ p {
     border-radius: 10px;
     background: rgb(4 51 110 / 40%);
     outline: none;
-  }
-  .slider::-webkit-slider-thumb {
+}
+
+.slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 30px;
@@ -192,19 +216,25 @@ p {
     border-radius: 50%;
     background: #034078;
     cursor: pointer;
-  }
-  .slider::-moz-range-thumb {
+}
+
+.slider::-moz-range-thumb {
     width: 30px;
     height: 30px;
     border-radius: 50% ;
     background: #034078;
     cursor: pointer;
-  }
-  .switch {
+}
+
+.switch {
     padding-left: 5%;
     padding-right: 5%;
-  }
+}
 
-  .switch input:disabled {
+.switch input:disabled {
     opacity: 0.5;
-  }
+}
+
+.Toggle:has(input:disabled) label {
+    opacity: 0.5;
+}
