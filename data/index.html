@@ -41,39 +41,293 @@
         </div>
         <div class="CardGrid">
             <div class="Card">
-                <p class="CardTitle">Яркость красных светдиодов</p>
+                <p class="CardTitle">Яркость красных светодиодов</p>
                 <p class="switch">
                     <input type="range" oninput="updateSliderPWM(this)" id="slider1" min="0" max="100" step="1" value ="0" class="slider">
                 </p>
                 <p class="state"><span id="sliderValue1"></span> %</p>
             </div>
             <div class="Card">
-                <p class="CardTitle">Яркость ультрафиолетовых светдиодов</p>
+                <p class="CardTitle">Яркость ультрафиолетовых светодиодов</p>
                 <p class="switch">
                     <input type="range" oninput="updateSliderPWM(this)" id="slider2" min="0" max="100" step="1" value ="0" class="slider">
                 </p>
                 <p class="state"><span id="sliderValue2"></span> %</p>
             </div>
             <div class="Card">
-                <p class="CardTitle">Яркость зеленых светдиодов</p>
+                <p class="CardTitle">Яркость зеленых светодиодов</p>
                 <p class="switch">
                     <input type="range" oninput="updateSliderPWM(this)" id="slider3" min="0" max="100" step="1" value ="0" class="slider">
                 </p>
                 <p class="state"><span id="sliderValue3"></span> %</p>
             </div>
             <div class="Card">
-                <p class="CardTitle">Яркость дальне-красных светдиодов</p>
+                <p class="CardTitle">Яркость дальне-красных светодиодов</p>
                 <p class="switch">
                     <input type="range" oninput="updateSliderPWM(this)" id="slider4" min="0" max="100" step="1" value ="0" class="slider">
                 </p>
                 <p class="state"><span id="sliderValue4"></span> %</p>
             </div>
             <div class="Card">
-                <p class="CardTitle">Яркость синих светдиодов</p>
+                <p class="CardTitle">Яркость синих светодиодов</p>
                 <p class="switch">
                     <input type="range" oninput="updateSliderPWM(this)" id="slider5" min="0" max="100" step="1" value ="0" class="slider">
                 </p>
                 <p class="state"><span id="sliderValue5"></span> %</p>
+            </div>
+        </div>
+    </div>
+    <div class="PlanWrapperTitle">
+        <div class="PlanCardTitle">
+            <div class="PlanTitle">Расписание сценариев излучения</div>
+        </div>
+    </div>
+    <div class="PlanWrapper">
+        <div class="PlanCardGrid">
+            <div class="PlanCard">
+                <div class="PlanLED">
+                    Красные светодиоды
+                </div>
+                <div class="PlanColTitle">
+                    <div>Время</div>
+                    <div>Интенсивность</div>
+                </div>
+                <div class="PlanStroke">
+                    <div class="PlanStrokeTime">
+                        <input id="tr1" class="Time" type="time" />
+                    </div>
+                    <div class="PlanStrokeI">
+                        <input id="nr1" class="Number" type="number" min="0" max="100" onKeyUp="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}"/>
+                    </div>
+                </div>
+                <div class="PlanStroke">
+                    <div class="PlanStrokeTime">
+                        <input id="tr2" class="Time" type="time" />
+                    </div>
+                    <div class="PlanStrokeI">
+                        <input id="nr2" class="Number" type="number" min="0" max="100" onKeyUp="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}"/>
+                    </div>
+                </div>
+                <div class="PlanStroke">
+                    <div class="PlanStrokeTime">
+                        <input id="tr3" class="Time" type="time" />
+                    </div>
+                    <div class="PlanStrokeI">
+                        <input id="nr3" class="Number" type="number" min="0" max="100" onKeyUp="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}"/>
+                    </div>
+                </div>
+                <div class="PlanStroke">
+                    <div class="PlanStrokeTime">
+                        <input id="tr4" class="Time" type="time" />
+                    </div>
+                    <div class="PlanStrokeI">
+                        <input id="nr4" class="Number" type="number" min="0" max="100" onKeyUp="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}"/>
+                    </div>
+                </div>
+                <div class="PlanStroke">
+                    <div class="PlanStrokeTime">
+                        <input id="tr5" class="Time" type="time" />
+                    </div>
+                    <div class="PlanStrokeI">
+                        <input id="nr5" class="Number" type="number" min="0" max="100" onKeyUp="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="PlanCard">
+                <div class="PlanLED">
+                    Ультрафиолетовые светодиоды
+                </div>
+                <div class="PlanColTitle">
+                    <div>Время</div>
+                    <div>Интенсивность</div>
+                </div>
+                <div class="PlanStroke">
+                    <div class="PlanStrokeTime">
+                        <input id="tuv1" class="Time" type="time" />
+                    </div>
+                    <div class="PlanStrokeI">
+                        <input id="nuv1" class="Number" type="number" min="0" max="100" onKeyUp="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}"/>
+                    </div>
+                </div>
+                <div class="PlanStroke">
+                    <div class="PlanStrokeTime">
+                        <input id="tuv2" class="Time" type="time" />
+                    </div>
+                    <div class="PlanStrokeI">
+                        <input id="nuv2" class="Number" type="number" min="0" max="100" onKeyUp="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}"/>
+                    </div>
+                </div>
+                <div class="PlanStroke">
+                    <div class="PlanStrokeTime">
+                        <input id="tuv3" class="Time" type="time" />
+                    </div>
+                    <div class="PlanStrokeI">
+                        <input id="nuv3" class="Number" type="number" min="0" max="100" onKeyUp="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}"/>
+                    </div>
+                </div>
+                <div class="PlanStroke">
+                    <div class="PlanStrokeTime">
+                        <input id="tuv4" class="Time" type="time" />
+                    </div>
+                    <div class="PlanStrokeI">
+                        <input id="nuv4" class="Number" type="number" min="0" max="100" onKeyUp="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}"/>
+                    </div>
+                </div>
+                <div class="PlanStroke">
+                    <div class="PlanStrokeTime">
+                        <input id="tuv5" class="Time" type="time" />
+                    </div>
+                    <div class="PlanStrokeI">
+                        <input id="nuv5" class="Number" type="number" min="0" max="100" onKeyUp="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="PlanCard">
+                <div class="PlanLED">
+                    Зеленые светодиоды
+                </div>
+                <div class="PlanColTitle">
+                    <div>Время</div>
+                    <div>Интенсивность</div>
+                </div>
+                <div class="PlanStroke">
+                    <div class="PlanStrokeTime">
+                        <input id="tg1" class="Time" type="time" />
+                    </div>
+                    <div class="PlanStrokeI">
+                        <input id="ng1" class="Number" type="number" min="0" max="100" onKeyUp="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}"/>
+                    </div>
+                </div>
+                <div class="PlanStroke">
+                    <div class="PlanStrokeTime">
+                        <input id="tg2" class="Time" type="time" />
+                    </div>
+                    <div class="PlanStrokeI">
+                        <input id="ng2" class="Number" type="number" min="0" max="100" onKeyUp="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}"/>
+                    </div>
+                </div>
+                <div class="PlanStroke">
+                    <div class="PlanStrokeTime">
+                        <input id="tg3" class="Time" type="time" />
+                    </div>
+                    <div class="PlanStrokeI">
+                        <input id="ng3" class="Number" type="number" min="0" max="100" onKeyUp="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}"/>
+                    </div>
+                </div>
+                <div class="PlanStroke">
+                    <div class="PlanStrokeTime">
+                        <input id="tg4" class="Time" type="time" />
+                    </div>
+                    <div class="PlanStrokeI">
+                        <input id="ng4" class="Number" type="number" min="0" max="100" onKeyUp="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}"/>
+                    </div>
+                </div>
+                <div class="PlanStroke">
+                    <div class="PlanStrokeTime">
+                        <input id="tg5" class="Time" type="time" />
+                    </div>
+                    <div class="PlanStrokeI">
+                        <input id="ng5" class="Number" type="number" min="0" max="100" onKeyUp="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="PlanCard">
+                <div class="PlanLED">
+                    Дальнекрасные светодиоды
+                </div>
+                <div class="PlanColTitle">
+                    <div>Время</div>
+                    <div>Интенсивность</div>
+                </div>
+                <div class="PlanStroke">
+                    <div class="PlanStrokeTime">
+                        <input id="tfr1" class="Time" type="time" />
+                    </div>
+                    <div class="PlanStrokeI">
+                        <input id="nfr1" class="Number" type="number" min="0" max="100" onKeyUp="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}"/>
+                    </div>
+                </div>
+                <div class="PlanStroke">
+                    <div class="PlanStrokeTime">
+                        <input id="tfr2" class="Time" type="time" />
+                    </div>
+                    <div class="PlanStrokeI">
+                        <input id="nfr2" class="Number" type="number" min="0" max="100" onKeyUp="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}"/>
+                    </div>
+                </div>
+                <div class="PlanStroke">
+                    <div class="PlanStrokeTime">
+                        <input id="tfr3" class="Time" type="time" />
+                    </div>
+                    <div class="PlanStrokeI">
+                        <input id="nfr3" class="Number" type="number" min="0" max="100" onKeyUp="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}"/>
+                    </div>
+                </div>
+                <div class="PlanStroke">
+                    <div class="PlanStrokeTime">
+                        <input id="tfr4" class="Time" type="time" />
+                    </div>
+                    <div class="PlanStrokeI">
+                        <input id="nfr4" class="Number" type="number" min="0" max="100" onKeyUp="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}"/>
+                    </div>
+                </div>
+                <div class="PlanStroke">
+                    <div class="PlanStrokeTime">
+                        <input id="tfr5" class="Time" type="time" />
+                    </div>
+                    <div class="PlanStrokeI">
+                        <input id="nfr5" class="Number" type="number" min="0" max="100" onKeyUp="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="PlanCard">
+                <div class="PlanLED">
+                    Синие светодиоды
+                </div>
+                <div class="PlanColTitle">
+                    <div>Время</div>
+                    <div>Интенсивность</div>
+                </div>
+                <div class="PlanStroke">
+                    <div class="PlanStrokeTime">
+                        <input id="tb1" class="Time" type="time" />
+                    </div>
+                    <div class="PlanStrokeI">
+                        <input id="nb1" class="Number" type="number" min="0" max="100" onKeyUp="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}"/>
+                    </div>
+                </div>
+                <div class="PlanStroke">
+                    <div class="PlanStrokeTime">
+                        <input id="tb2" class="Time" type="time" />
+                    </div>
+                    <div class="PlanStrokeI">
+                        <input id="nb2" class="Number" type="number" min="0" max="100" onKeyUp="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}"/>
+                    </div>
+                </div>
+                <div class="PlanStroke">
+                    <div class="PlanStrokeTime">
+                        <input id="tb3" class="Time" type="time" />
+                    </div>
+                    <div class="PlanStrokeI">
+                        <input id="nb3" class="Number" type="number" min="0" max="100" onKeyUp="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}"/>
+                    </div>
+                </div>
+                <div class="PlanStroke">
+                    <div class="PlanStrokeTime">
+                        <input id="tb4" class="Time" type="time" />
+                    </div>
+                    <div class="PlanStrokeI">
+                        <input id="nb4" class="Number" type="number" min="0" max="100" onKeyUp="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}"/>
+                    </div>
+                </div>
+                <div class="PlanStroke">
+                    <div class="PlanStrokeTime">
+                        <input id="tb5" class="Time" type="time" />
+                    </div>
+                    <div class="PlanStrokeI">
+                        <input id="nb5" class="Number" type="number" min="0" max="100" onKeyUp="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}"/>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

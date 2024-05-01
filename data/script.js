@@ -98,10 +98,14 @@ function onMessage(event) {
             document.getElementById("slider5").removeAttribute("disabled");
             document.getElementById("Toggle-move").removeAttribute("disabled");
             // document.getElementById("temperature").value = myObj[key];
-        } else if (myObj[key] == "Адаптация излучения OFF" && document.getElementById("Toggle-rounded").checked == true) {
-            document.getElementById(key).innerHTML = myObj[key];
-            document.getElementById("slider3").removeAttribute("disabled");
+        } else if (myObj[key] == "Адаптация излучения OFF") {
+            document.getElementById("Toggle-move").checked = false;
+            if (document.getElementById("Toggle-rounded").checked == true) {
+                document.getElementById(key).innerHTML = myObj[key];
+                document.getElementById("slider3").removeAttribute("disabled");
+            }
         } else if (myObj[key] == "Адаптация излучения ON") {
+            document.getElementById("Toggle-move").checked = true;
             document.getElementById(key).innerHTML = myObj[key];
             document.getElementById("slider3").setAttribute("disabled", "");
         } else {
