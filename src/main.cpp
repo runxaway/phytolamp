@@ -7,9 +7,20 @@
 #include "DHT.h"
 #include <Adafruit_Sensor.h>
 
+#include <NTPClient.h>
+#include <WiFiUdp.h>
+
 #define DHTPIN 23 //here we use pin IO14 of ESP32 to read data
 #define DHTTYPE DHT11 //our sensor is DHT22 type
 #define SENSOR_PIN 22
+
+WiFiUDP ntpUDP;
+NTPClient timeClient(ntpUDP);
+unsigned long myTime;
+
+String formattedDate;
+String dayStamp;
+String timeStamp;
 
 bool movement_detected = false;
 
@@ -279,9 +290,17 @@ void setup() {
 
   // Start server
   dht.begin();
+
+  timeClient.begin();
+  timeClient.setTimeOffset(10800);
 }
 
 void loop() {
+  myTime = millis();
+  if (myTime%60000 == 0) {
+    timeClient.update();
+  }
+
   if (move == "Адаптация излучения ON") {
     if (movement_detected == true) {
       dutyCycle3 = (dutyCycle1 + dutyCycle5)/2;
