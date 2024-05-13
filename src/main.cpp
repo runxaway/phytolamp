@@ -10,8 +10,8 @@
 #include <NTPClient.h>
 #include <WiFiUdp.h>
 
-#define DHTPIN 23 //here we use pin IO14 of ESP32 to read data
-#define DHTTYPE DHT11 //our sensor is DHT22 type
+#define DHTPIN 23
+#define DHTTYPE DHT11
 #define SENSOR_PIN 22
 
 WiFiUDP ntpUDP;
@@ -24,25 +24,18 @@ String timeStamp;
 
 bool movement_detected = false;
 
-// Replace with your network credentials
 const char* ssid = "TP-Link_B763";
 const char* password = "26644554";
 
 // const char* ssid = "MegaFonMR150-7_E093";
 // const char* password = "70774332";
 
-// Create AsyncWebServer object on port 80
 AsyncWebServer server(80);
-// Create a WebSocket object
 
 AsyncWebSocket ws("/ws");
 
-// unsigned long lastTime = 0;
-// unsigned long timerDelay = 3000;
-
 DHT dht(DHTPIN, DHTTYPE);
 
-// Set LED GPIO
 const int ledPin1 = 25;
 const int ledPin2 = 26;
 const int ledPin3 = 27;
@@ -64,7 +57,6 @@ int dutyCycle3;
 int dutyCycle4;
 int dutyCycle5;
 
-// setting PWM properties
 const int freq = 5000;
 const int ledChannel1 = 0;
 const int ledChannel2 = 1;
@@ -74,20 +66,8 @@ const int ledChannel5 = 4;
 
 const int resolution = 8;
 
-// JSONVar readings;
-
-// String getSensorReadings() {
-//   readings["temperature"] = String(dht.readTemperature());
-//   readings["humidity"] =  String(dht.readHumidity());
-  
-//   String jsonStringDHT = JSON.stringify(readings);
-//   return jsonStringDHT;
-// }
-
-//Json Variable to Hold Slider Values
 JSONVar sliderValues;
 
-// Get Slider Values
 String getSliderValues(String m) {
   sliderValues["sliderValue1"] = String(sliderValue1);
   sliderValues["sliderValue2"] = String(sliderValue2);
@@ -124,7 +104,6 @@ String getSliderValues(String m) {
   return jsonString;
 }
 
-// Initialize SPIFFS
 void initFS() {
   if (!SPIFFS.begin()) {
     Serial.println("An error has occurred while mounting SPIFFS");
@@ -134,7 +113,6 @@ void initFS() {
   }
 }
 
-// Initialize WiFi
 void initWiFi() {
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
@@ -178,46 +156,32 @@ void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
     if (message == "Адаптация излучения OFF") {
       notifyClients(getSliderValues(message));
     }
-    // Serial.print(message.indexOf("1s"));
     if (message == "getReadings") {
-      // Serial.print(getSensorReadings());
-      // notifyClientsDHT(getSensorReadings());
-      // Serial.print(getSensorReadings());
       notifyClients(getSliderValues(message));
     }
     if ((message.indexOf("1s") >= 0)) {
       sliderValue1 = message.substring(2);
       dutyCycle1 = map(sliderValue1.toInt(), 0, 100, 0, 255);
-      // Serial.println(dutyCycle1);
-      // Serial.print(getSliderValues());
       notifyClients(getSliderValues(message));
     }
     if ((message.indexOf("2s") >= 0)) {
       sliderValue2 = message.substring(2);
       dutyCycle2 = map(sliderValue2.toInt(), 0, 100, 0, 255);
-      // Serial.println(dutyCycle2);
-      // Serial.print(getSliderValues());
       notifyClients(getSliderValues(message));
     }    
     if ((message.indexOf("3s") >= 0)) {
       sliderValue3 = message.substring(2);
       dutyCycle3 = map(sliderValue3.toInt(), 0, 100, 0, 255);
-      // Serial.println(dutyCycle3);
-      // Serial.print(getSliderValues());
       notifyClients(getSliderValues(message));
     }
     if ((message.indexOf("4s") >= 0)) {
       sliderValue4 = message.substring(2);
       dutyCycle4 = map(sliderValue4.toInt(), 0, 100, 0, 255);
-      // Serial.println(dutyCycle4);
-      // Serial.print(getSliderValues());
       notifyClients(getSliderValues(message));
     }
     if ((message.indexOf("5s") >= 0)) {
       sliderValue5 = message.substring(2);
       dutyCycle5 = map(sliderValue5.toInt(), 0, 100, 0, 255);
-      // Serial.println(dutyCycle5);
-      // Serial.print(getSliderValues());
       notifyClients(getSliderValues(message));
     }
     if ((strcmp((char*)data, "getValues") == 0)) {
@@ -258,14 +222,12 @@ void setup() {
 
   pinMode(SENSOR_PIN, INPUT);
 
-  // configure LED PWM functionalitites
   ledcSetup(ledChannel1, freq, resolution);
   ledcSetup(ledChannel2, freq, resolution);
   ledcSetup(ledChannel3, freq, resolution);
   ledcSetup(ledChannel4, freq, resolution);
   ledcSetup(ledChannel5, freq, resolution);
 
-  // attach the channel to the GPIO to be controlled
   ledcAttachPin(ledPin1, ledChannel1);
   ledcAttachPin(ledPin2, ledChannel2);
   ledcAttachPin(ledPin3, ledChannel3);
@@ -277,7 +239,6 @@ void setup() {
   initWebSocket();
   server.begin();
   
-  // Web Server Root URL
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
     request->send(SPIFFS, "/index.html", "text/html");
   });
@@ -288,7 +249,6 @@ void setup() {
     request->send(SPIFFS, "/ETUlogo.png", "image/png");
   });
 
-  // Start server
   dht.begin();
 
   timeClient.begin();
@@ -316,7 +276,6 @@ void loop() {
 
   int sensor_reading = digitalRead(SENSOR_PIN);
   if (sensor_reading == HIGH) {
-    // Движение обнаружено
     if (!movement_detected) {
       movement_detected = true;
       Serial.print("move");
